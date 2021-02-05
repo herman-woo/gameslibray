@@ -1,103 +1,91 @@
 import React, { Component } from 'react';
-
+import SearchItem from "./SearchItem";
+import { Link } from "react-router-dom";
 class GamesLibrary extends Component {
-    render(){
-    const { onNavigate, onStatusChange } = this.props
-      return(
-      <div className='games-lib'>
-        <div className='lib-header'>
-          <h1 className='active-games-title'> Search</h1>
-          <button
-            className='lib-button'
-            onClick= {onNavigate}
-          >
-              View Active Games
-          </button>
-        </div>
-        <div className='games-lib'>
-          <ul className='search-list'>
-            {this.props.allgames.map((game)=>(
-              <li className= {game.status === 'none'? 'search-item' : (game.status === 'playing'? 'current-item search-item' : (game.status === 'completed'? 'completed-item search-item' : 'waitlisted-item search-item'))}
-                key={game.id}
-                style={{backgroundImage: `url(${game.imageURL})`}
-              }>
-              {game.status === 'none' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'playing')}}
-                    >play
-                </button>}
-                {game.status === 'none' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'waitlist')}}
-                    >wait
-                </button>}
-                {game.status === 'none' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'completed')}}
-                    >done
-                </button>}
-                
-               
-                {game.status === 'waitlist' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'playing')}}
-                    >play
-                </button>
-                }
-                {game.status === 'waitlist' &&  
-                <button
-                    className='remove button'
-                    onClick={()=> {onStatusChange(game.id,'none')}}
-                    >remove
-                </button>
-                }
-                {game.status === 'waitlist' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'completed')}}
-                    >done
-                </button>
-                }      
-              {game.status === 'playing' &&  
-                <button
-                    className='remove button'
-                    onClick={()=> {onStatusChange(game.id,'none')}}
-                    >remove
-                </button>             
-              }
-              {game.status === 'playing' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'waitlist')}}
-                    >wait
-                </button>             
-              }
-              {game.status === 'playing' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'completed')}}
-                    >done
-                </button>             
-              }
-              {game.status === 'completed' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'none')}}
-                    >remove
-                </button>             
-              }
-              {game.status === 'completed' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'waitlist')}}
-                    >wait
-                </button>             
-              }
-              {game.status === 'completed' &&  
-                <button
-                    onClick={()=> {onStatusChange(game.id,'playing')}}
-                    >play
-                </button>             
-              }
+  state = {
+    search: ''
+  }  
+  updateQuery = (search) => {
+    this.setState(() => (
+        {
+          search: search
+        }
+      )
+    )
+  }
 
-              </li>
-            ))}
-          </ul>
+  clearSearch = () => {
+    this.updateQuery('')
+  }
+
+  render(){
+    const { search } = this.state
+    const { allgames, onNavigate, onSwitch, onRemove } = this.props
+    const resultsArray = search === ''
+    ? ''
+    : allgames.filter((g) => (
+      g.name.toLowerCase().includes(search.toLowerCase())
+    ))
+    const results = resultsArray
+    const myClone = (game, status) => {
+      let target = {}
+      const clone = Object.assign(target, game)
+      clone.status = status
+      onSwitch(clone,game)
+    }  
+
+      return(
+      <div className='search'>
+        <div className='search-header'>
+          <input
+            className='search-games-input'
+            type='text'
+            placeholder='Search Games'
+            value={search}
+            onChange={(event)=> this.updateQuery(event.target.value)}
+          ></input>
+          <div className='results-title'>           
+            {search === ''
+            ? <h1>Search the Library</h1>
+            : <h2>{`${resultsArray.length} search ${resultsArray.length === 1
+              ? 'result'
+              : 'results'} for '${search}'`}</h2>}
+            {search!== '' &&(
+              <button className='clear button'
+              onClick={this.clearSearch}>
+                Clear Search
+              </button>
+            )}      
+            
+            </div>
+        </div>
+        <div className='search-results'>          
+          <ol className='search-list'>
+            {results !== '' && (
+              results.map((game)=>(
+                <li
+                  key={`${game.id}List`}>
+                  <SearchItem
+                    game= {game}
+                    myClone = {myClone}
+                    onRemove = {onRemove} 
+                  />
+                </li>)))
+            }
+          </ol>
+        </div>
+        <div className='search-footer'>
+          <Link
+            to='/'
+          >
+            <button
+                className='back button'
+                onClick= {onNavigate}
+            >
+            </button>
+          </Link>
+          
+          <h2>Return</h2>
         </div>
       </div>
       );
