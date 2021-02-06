@@ -54,10 +54,6 @@ import { Route } from 'react-router-dom';
     this.setState({games: gamesArray})
   }
   */
-
-  onNavigateChange = (display) => {
-    this.setState({ display })
-  }
   
    render (){
     return(
@@ -65,7 +61,6 @@ import { Route } from 'react-router-dom';
         <Route exact path='/' render={() => (
           <MyGamesLog
             mygames = {this.state.games}
-            onNavigate = {()=> this.onNavigateChange('all')}
             onDeleteContact={this.removeContact}
             onSwitch = {this.switchState}
           />
@@ -73,7 +68,6 @@ import { Route } from 'react-router-dom';
         <Route path='/search' render={()=> (
           <GamesLibrary
             allgames = {this.state.games}
-            onNavigate = {()=>this.onNavigateChange('log')}
             display={this.state.display}
             onSwitch = {this.switchState}
             onRemove = {this.removeContact}

@@ -13,7 +13,7 @@ class MyGamesLog extends Component {
 
 
     render(){
-      const { onNavigate, mygames, onSwitch } = this.props
+      const { mygames, onSwitch } = this.props
       const myClone = (game, status) => {
         let target = {}
         const clone = Object.assign(target, game)
