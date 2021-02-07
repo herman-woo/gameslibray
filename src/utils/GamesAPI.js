@@ -1,7 +1,7 @@
 //CODE IS TAKEN DIRECTLY FROM UDACITY FOR LEARNING PURPOSES
 //Variable names are changed
 
-const api = 'https://gamesrepositoryserverapp.herokuapp.com'
+const api = 'https://aaronserver.herokuapp.com'
 
 let token = localStorage.token
 
