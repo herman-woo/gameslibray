@@ -12,7 +12,7 @@ const headers = {
   'Accept': 'application/json',
   'Authorization': token
 }
-
+//comment
 //path that allows the app.js to contact the server
 export const getAll = () =>
   fetch(`${api}/contacts`, { headers })
