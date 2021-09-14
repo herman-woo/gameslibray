@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gameslibray/static/css/main.d0fc7073.chunk.css",
+    "main.css": "/gameslibray/static/css/main.497d1b36.chunk.css",
     "main.js": "/gameslibray/static/js/main.6861a133.chunk.js",
     "main.js.map": "/gameslibray/static/js/main.6861a133.chunk.js.map",
     "runtime-main.js": "/gameslibray/static/js/runtime-main.e3f0d684.js",
@@ -10,14 +10,14 @@
     "static/js/3.148b814a.chunk.js": "/gameslibray/static/js/3.148b814a.chunk.js",
     "static/js/3.148b814a.chunk.js.map": "/gameslibray/static/js/3.148b814a.chunk.js.map",
     "index.html": "/gameslibray/index.html",
-    "static/css/main.d0fc7073.chunk.css.map": "/gameslibray/static/css/main.d0fc7073.chunk.css.map",
+    "static/css/main.497d1b36.chunk.css.map": "/gameslibray/static/css/main.497d1b36.chunk.css.map",
     "static/js/2.3cc38b58.chunk.js.LICENSE.txt": "/gameslibray/static/js/2.3cc38b58.chunk.js.LICENSE.txt",
     "static/media/index.css": "/gameslibray/static/media/search.c7d98dfd.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e3f0d684.js",
     "static/js/2.3cc38b58.chunk.js",
-    "static/css/main.d0fc7073.chunk.css",
+    "static/css/main.497d1b36.chunk.css",
     "static/js/main.6861a133.chunk.js"
   ]
 }
